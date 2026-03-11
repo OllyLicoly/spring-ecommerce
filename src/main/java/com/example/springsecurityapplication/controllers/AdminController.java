@@ -172,7 +172,7 @@ public class AdminController {
     //Список всех заказов
     @GetMapping("/admin/orderList")
     public String ordersGetAll(Model model) {
-        model.addAttribute("orders", orderService.getAllOrders1());
+        model.addAttribute("orders", orderService.getAllOrders());
         model.addAttribute("status", Status.values());
         return "/admin/orderList";
     }
@@ -180,7 +180,7 @@ public class AdminController {
     //Поиск заказа по последним 4м символам номера
     @PostMapping("/admin/orderList/order_search")
     public String orderSearch(@RequestParam("order_search") String search, Model model) {
-        model.addAttribute("orders", orderService.getAllOrders1());
+        model.addAttribute("orders", orderService.getAllOrders());
         model.addAttribute("order_search", orderRepository.findByNumber(search));
         model.addAttribute("value_search", search);
         return "admin/orderList";

@@ -23,13 +23,11 @@ public class PersonService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    //Получить объект пользователя по логину
     public Person findByLogin(Person person){
         Optional<Person> person_db = personRepository.findByLogin(person.getLogin());
         return person_db.orElse(null);
     }
 
-    //Регистрация
     @Transactional
     public void register(Person person){
         person.setPassword(passwordEncoder.encode(person.getPassword()));
@@ -37,18 +35,15 @@ public class PersonService {
         personRepository.save(person);
     }
 
-    // Данный метод позволяет получить список всех пользователей
     public List<Person> getAllPerson(){
         return personRepository.findAll();
     }
 
-    // Данный метод позволяет получить пользователя по id
     public Person getPersonId(int id){
         Optional<Person> optionalPerson = personRepository.findById(id);
         return optionalPerson.orElse(null);
     }
 
-    // Данный метод позволяет обновить данные о товаре
     @Transactional
     public void updatePerson(int id, Person person){
         person.setId(id);

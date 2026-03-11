@@ -23,13 +23,10 @@ public class PersonDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Получаем пользоателя из таблицы по логину с формы аутентификации
         Optional<Person> person = personRepository.findByLogin(username);
-        //Если пользователь не был найден, выбрасывается исключение, что пользователь не найден. Данное исключение будет поймано Spring Security, и сообщение будет выведено на страницу
         if(person.isEmpty()){
             throw new UsernameNotFoundException("пользователь не найден");
         }
-        //Если пользователь найден, то создаем новый объект PersonDetails
         return new PersonDetails(person.get());
     }
 }
