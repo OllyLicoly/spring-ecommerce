@@ -37,8 +37,6 @@ public class MainController {
 
     private final OrderRepository orderRepository;
 
-//    private final StatusService statusService;
-
     public MainController(ProductRepository productRepository, PersonValidator personValidator, PersonService personService, ProductService productService, CartRepository cartRepository, OrderService orderService, OrderRepository orderRepository) {
         this.productRepository = productRepository;
         this.personValidator = personValidator;
